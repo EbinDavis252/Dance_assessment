@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+import joblib
+
+# Sample training data
+df = pd.DataFrame({
+    'age': [10, 12, 14, 16, 18, 20],
+    'attendance': [95, 80, 75, 65, 60, 50],
+    'scores': [85, 70, 60, 55, 50, 40],
+    'dropout': [0, 0, 0, 1, 1, 1]
+})
+
+X = df[['age', 'attendance', 'scores']]
+y = df['dropout']
+
+model = RandomForestClassifier()
+model.fit(X, y)
+
+# Save it to pkl
+joblib.dump(model, "dropout_predictor.pkl")
